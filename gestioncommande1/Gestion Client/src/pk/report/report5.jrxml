@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report5" language="groovy" pageWidth="650" pageHeight="842" columnWidth="610" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0cc33472-586e-4b00-9b65-3f5be7695040">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="153"/>
+	<parameter name="NoCmd" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[SELECT
+     COMMANDE."NOCMD" AS COMMANDE_NOCMD,
+     COMMANDE."DATECMD" AS COMMANDE_DATECMD,
+     COMMANDE."NOCLT" AS COMMANDE_NOCLT,
+     ARTICLE."NOART" AS ARTICLE_NOART,
+     ARTICLE."LIBELE" AS ARTICLE_LIBELE,
+     ARTICLE."PRIX" AS ARTICLE_PRIX,
+     ARTICLE."QTE_STOCK" AS ARTICLE_QTE_STOCK,
+     CLIENT."NOCLT" AS CLIENT_NOCLT,
+     CLIENT."NOM" AS CLIENT_NOM,
+     CLIENT."PRENOM" AS CLIENT_PRENOM,
+     CLIENT."ADRESSE" AS CLIENT_ADRESSE,
+     LIGNECOMMANDE."NOLC" AS LIGNECOMMANDE_NOLC,
+     LIGNECOMMANDE."NOCMD" AS LIGNECOMMANDE_NOCMD,
+     LIGNECOMMANDE."NOART" AS LIGNECOMMANDE_NOART,
+     LIGNECOMMANDE."QTE" AS LIGNECOMMANDE_QTE
+FROM
+     "CMD"."CLIENT" CLIENT INNER JOIN "CMD"."COMMANDE" COMMANDE ON CLIENT."NOCLT" = COMMANDE."NOCLT"
+     INNER JOIN "CMD"."LIGNECOMMANDE" LIGNECOMMANDE ON COMMANDE."NOCMD" = LIGNECOMMANDE."NOCMD"
+     INNER JOIN "CMD"."ARTICLE" ARTICLE ON LIGNECOMMANDE."NOART" = ARTICLE."NOART"
+where commande.nocmd=$P{NoCmd}]]>
+	</queryString>
+	<field name="COMMANDE_NOCMD" class="java.math.BigDecimal"/>
+	<field name="COMMANDE_DATECMD" class="java.sql.Timestamp"/>
+	<field name="COMMANDE_NOCLT" class="java.math.BigDecimal"/>
+	<field name="ARTICLE_NOART" class="java.math.BigDecimal"/>
+	<field name="ARTICLE_LIBELE" class="java.lang.String"/>
+	<field name="ARTICLE_PRIX" class="java.math.BigDecimal"/>
+	<field name="ARTICLE_QTE_STOCK" class="java.math.BigDecimal"/>
+	<field name="CLIENT_NOCLT" class="java.math.BigDecimal"/>
+	<field name="CLIENT_NOM" class="java.lang.String"/>
+	<field name="CLIENT_PRENOM" class="java.lang.String"/>
+	<field name="CLIENT_ADRESSE" class="java.lang.String"/>
+	<field name="LIGNECOMMANDE_NOLC" class="java.math.BigDecimal"/>
+	<field name="LIGNECOMMANDE_NOCMD" class="java.math.BigDecimal"/>
+	<field name="LIGNECOMMANDE_NOART" class="java.math.BigDecimal"/>
+	<field name="LIGNECOMMANDE_QTE" class="java.math.BigDecimal"/>
+	<variable name="stot" class="java.lang.Integer">
+		<variableExpression><![CDATA[$F{ARTICLE_PRIX}.floatValue()*$F{LIGNECOMMANDE_QTE}.intValue()]]></variableExpression>
+	</variable>
+	<variable name="vtht" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$V{stot}]]></variableExpression>
+	</variable>
+	<variable name="vtva" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$V{vtht}.floatValue()*0.2]]></variableExpression>
+	</variable>
+	<variable name="vttc" class="java.lang.Float">
+		<variableExpression><![CDATA[$V{vtht}.floatValue()*1.2]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="205" splitType="Stretch">
+			<image>
+				<reportElement uuid="fe96066f-b773-435d-ad36-dd8f96b57517" x="17" y="20" width="114" height="83"/>
+				<imageExpression><![CDATA["C:\\Users\\NeetKing\\Desktop\\logostor.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement uuid="2fcdbaf7-a054-4d16-9fe3-52fcc2130c7e" x="131" y="12" width="153" height="27"/>
+				<textElement>
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Informatique Stor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="19fe60fd-a42f-4668-973b-eda62a8c926c" x="131" y="42" width="167" height="20"/>
+				<textElement/>
+				<text><![CDATA[Boulvarde El Qods Casablanca]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a9af5043-9df6-4a6e-8dbf-864fa2db9a4c" x="442" y="12" width="100" height="27" forecolor="#FF3300"/>
+				<textElement>
+					<font size="18"/>
+				</textElement>
+				<text><![CDATA[Facture]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="362838a6-c7ef-4896-8e11-5b64f887d740" x="407" y="62" width="100" height="36"/>
+				<textElement>
+					<font size="20"/>
+				</textElement>
+				<text><![CDATA[Client:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="34898fca-3eee-4f55-85b6-97b373623d8a" x="407" y="98" width="35" height="20"/>
+				<textElement/>
+				<text><![CDATA[Nom:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e809e1a9-556e-4ddb-bcc2-9460b450e4a9" x="407" y="118" width="46" height="20"/>
+				<textElement/>
+				<text><![CDATA[Prenom:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="92921e1e-11f7-431a-a6b2-9d40e230b491" x="407" y="138" width="46" height="20"/>
+				<textElement/>
+				<text><![CDATA[Adresse:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="b2498cb2-f298-423f-90d0-99c9fe83a0c5" x="453" y="98" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{CLIENT_NOM}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="637a07a0-d79b-4991-937f-8ddbfc0d4954" x="453" y="118" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{CLIENT_PRENOM}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="57cf2dc1-a23b-4339-9fc3-49b086a23862" x="464" y="138" width="89" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{CLIENT_ADRESSE}]]></textFieldExpression>
+			</textField>
+			<rectangle radius="10">
+				<reportElement uuid="ee9a1762-6b0c-4ab1-83b3-0377951b2fec" x="0" y="129" width="174" height="76" forecolor="#FF0033"/>
+			</rectangle>
+			<staticText>
+				<reportElement uuid="a2412208-215a-4c6a-822a-07771918c139" x="0" y="138" width="60" height="20"/>
+				<textElement/>
+				<text><![CDATA[NoCmd:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="1758bf1a-c967-47b7-8ba9-1140453f5fa3" x="0" y="158" width="60" height="20"/>
+				<textElement/>
+				<text><![CDATA[DateCmd:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8824de63-bca2-439c-bea7-efe11e9ad40a" x="0" y="185" width="60" height="20"/>
+				<textElement/>
+				<text><![CDATA[NoClt:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="88a78491-f161-4b08-8b62-d2be55de9506" x="76" y="138" width="98" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{COMMANDE_NOCMD}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="a94ea6b9-5734-448e-bd0d-cbe7892cd6e4" x="74" y="158" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{COMMANDE_DATECMD}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="185e688f-4c68-4ff1-bc26-c5158860294f" x="74" y="178" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{COMMANDE_NOCLT}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="56" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="62" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="998d7187-3830-4258-9109-26264282e9b3" x="-14" y="42" width="100" height="19"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement/>
+				<text><![CDATA[Ref]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ffb30016-aad1-4e9c-b383-814c11e3b4db" x="86" y="42" width="291" height="19"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement/>
+				<text><![CDATA[Designation]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="95d00b58-c967-4380-94b9-9c8a75a103d3" x="377" y="42" width="58" height="19"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement/>
+				<text><![CDATA[PU]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="fce00284-ce01-43a0-b91a-49a0030cca49" x="435" y="42" width="61" height="20"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement/>
+				<text><![CDATA[Qte:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ee4c563e-4d33-4f29-8c41-19f1fee8ea2d" x="496" y="42" width="59" height="20"/>
+				<box topPadding="5" leftPadding="2">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement/>
+				<text><![CDATA[Sous Total]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement uuid="9de8377a-941b-44c5-8f0b-8f3d16a07d3a" x="-14" y="0" width="100" height="20"/>
+				<box topPadding="5" leftPadding="2">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{ARTICLE_NOART}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="23e4b939-58e9-4e13-a914-c1dd6f5b23b1" x="86" y="0" width="291" height="20"/>
+				<box topPadding="5" leftPadding="2">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{ARTICLE_LIBELE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="eb74d2ea-50ba-4598-8c51-0d1edfd3f4ab" x="377" y="0" width="58" height="20"/>
+				<box topPadding="5" leftPadding="2">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{ARTICLE_PRIX}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="56e32c12-c59e-42d2-8031-9843834f6b0a" x="435" y="0" width="61" height="20"/>
+				<box topPadding="5" leftPadding="2">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{LIGNECOMMANDE_QTE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="382a1a3d-29fd-4936-b207-44f15e898987" x="496" y="0" width="59" height="20"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement/>
+				<textFieldExpression><![CDATA[$V{stot}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="26" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="1cb0996c-949c-48d4-85bc-4799d85a69dd" x="0" y="0" width="555" height="24"/>
+				<textElement textAlignment="Center">
+					<font size="15"/>
+				</textElement>
+				<text><![CDATA[Informatique Stor No21,Boulvarde El Qods ,Casablanca:2500]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="438f7dab-a339-48d7-8d95-a58726f00eca" x="17" y="34" width="505" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="13"/>
+				</textElement>
+				<text><![CDATA[ICF:1021555595,RC:1234677,No tell:0678746784]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="59" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="30a126d2-2e72-4ed7-97cf-316866fc3de5" x="377" y="0" width="78" height="20"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement/>
+				<text><![CDATA[Tht:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="d4c3a665-7930-4881-b220-89fd5eb7eaf1" x="455" y="0" width="100" height="20"/>
+				<box topPadding="5" leftPadding="2">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement/>
+				<textFieldExpression><![CDATA[$V{vtht}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="280c3d35-103b-4ca0-a298-48061382e7f6" x="377" y="19" width="78" height="20"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement/>
+				<text><![CDATA[Tva:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="598e3f83-6478-4d88-9f83-34c028b9f44a" x="455" y="19" width="100" height="20"/>
+				<box topPadding="5" leftPadding="2">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement/>
+				<textFieldExpression><![CDATA[$V{vtva}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="313e9942-8edd-4b34-964c-f0581e44c94e" x="377" y="39" width="78" height="20"/>
+				<box topPadding="5" leftPadding="2">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement/>
+				<text><![CDATA[Ttc:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="774988b1-cbd4-46a4-af24-4f894f91d938" x="455" y="39" width="100" height="20"/>
+				<box topPadding="5" leftPadding="2">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement/>
+				<textFieldExpression><![CDATA[$V{vttc}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

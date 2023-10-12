@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report6" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="eec87da3-064d-4d8d-bf0e-162c3e423463">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[select * from client]]>
+	</queryString>
+	<field name="CODECLI" class="java.lang.String"/>
+	<field name="NOMC" class="java.lang.String"/>
+	<field name="CATC" class="java.lang.String"/>
+	<field name="VITLC" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="5" y="2" width="100" height="20" uuid="56f3704c-f3cc-40e1-9ff7-c386d119dd39"/>
+				<text><![CDATA[CODECLI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="136" y="2" width="100" height="20" uuid="7fa24970-1740-45d2-aab7-eb47203ad325"/>
+				<text><![CDATA[NOMC]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="276" y="2" width="100" height="20" uuid="4c3649b5-777b-4543-aa3e-dac2903a593e"/>
+				<text><![CDATA[CATC]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="452" y="2" width="100" height="20" uuid="a596188e-5991-49a6-9bf5-06b4455ef8a1"/>
+				<text><![CDATA[VITLC]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="5" y="14" width="100" height="20" uuid="6b31899c-6f6d-4bc4-85e9-e39d7ef5f23b"/>
+				<textFieldExpression><![CDATA[$F{CODECLI}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="136" y="15" width="100" height="20" uuid="ccac3ad4-2b81-4b15-ac03-2afde124b86f"/>
+				<textFieldExpression><![CDATA[$F{NOMC}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="276" y="17" width="100" height="20" uuid="f8eace5a-a0df-4ed3-88d1-f9a38e124032"/>
+				<textFieldExpression><![CDATA[$F{CATC}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="452" y="18" width="100" height="20" uuid="9b9d5286-22ba-454d-a33b-49c5ceb05cbd"/>
+				<textFieldExpression><![CDATA[$F{VITLC}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

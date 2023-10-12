@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!ELEMENT cafe (table*)>
+<!ELEMENT table ( long , larg , nape )>
+<!ATTLIST table type (carre | triangle | cercle) #REQUIRED>
+<!ELEMENT long (#PCDATA)>
+<!ELEMENT larg (#PCDATA)>
+<!ELEMENT nape (#PCDATA)>

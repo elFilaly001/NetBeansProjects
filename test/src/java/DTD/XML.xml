@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE cafe SYSTEM "newemptyDTD.dtd">
+
+<cafe>
+    <table type="carre">
+        <long> 1.5 </long>
+        <larg> 1.5</larg>
+        <nape> non </nape>
+    </table>
+    <table type="carre">
+        <long> 2 </long>
+        <larg> 2</larg>
+        <nape> oui </nape>
+    </table>
+</cafe>

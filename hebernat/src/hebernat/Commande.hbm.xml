@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 3, 2022 3:08:54 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hebernat.Commande" table="COMMANDE" schema="GSCOM" optimistic-lock="version">
+        <id name="numcom" type="big_decimal">
+            <column name="NUMCOM" precision="20" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="client" class="hebernat.Client" fetch="select">
+            <column name="CODECLT" precision="10" scale="0" />
+        </many-to-one>
+        <property name="datecom" type="date">
+            <column name="DATECOM" length="7" />
+        </property>
+        <set name="detailcoms" table="DETAILCOM" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="NUMCOM" precision="10" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="hebernat.Detailcom" />
+        </set>
+    </class>
+</hibernate-mapping>

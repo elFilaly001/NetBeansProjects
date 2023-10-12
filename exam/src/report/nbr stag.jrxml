@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="nbr stag" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7d2f0477-f4f1-483f-88ef-7c52f7fad045">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[select id_stage , id_ass , count(*) from stage join association using (id_ass)
+ group by id_ass ,id_stage]]>
+	</queryString>
+	<field name="ID_STAGE" class="java.math.BigDecimal"/>
+	<field name="ID_ASS" class="java.math.BigDecimal"/>
+	<field name="COUNT(*)" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="51" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="fc822fbb-d1d6-4cf0-a642-5492624a0311" mode="Opaque" x="136" y="0" width="258" height="51" backcolor="#99FFCC"/>
+				<textElement>
+					<font fontName="Arial" size="18"/>
+				</textElement>
+				<text><![CDATA[ la représentation du nombre de stages
+par Association.]]></text>
+			</staticText>
+		</band>
+	</title>
+	<summary>
+		<band height="286" splitType="Stretch">
+			<barChart>
+				<chart>
+					<reportElement uuid="e307e3be-6755-4669-a5d0-b0bdf39f8cfe" x="28" y="21" width="498" height="249"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA[$F{ID_STAGE}]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{ID_ASS}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{COUNT(*)}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<barPlot>
+					<plot/>
+					<itemLabel/>
+					<categoryAxisFormat>
+						<axisFormat/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat/>
+					</valueAxisFormat>
+				</barPlot>
+			</barChart>
+		</band>
+	</summary>
+</jasperReport>

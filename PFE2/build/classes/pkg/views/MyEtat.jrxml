@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="MyEtat" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0cb18741-acc3-4427-a743-4db5898fcd0c">
+	<property name="ireport.zoom" value="1.3310000000000022"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="p_idc" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[SELECT
+     CONTRAT."ID_CONTRAT" AS CONTRAT_ID_CONTRAT,
+     CONTRAT."DATE_D" AS CONTRAT_DATE_D,
+     CONTRAT."DATE_R" AS CONTRAT_DATE_R,
+     CONTRAT."MONTANT" AS CONTRAT_MONTANT,
+     CONTRAT."MATRICULE" AS CONTRAT_MATRICULE,
+     CONTRAT."CIN_CLT" AS CONTRAT_CIN_CLT,
+     CLIENT."CIN_CLT" AS CLIENT_CIN_CLT,
+     CLIENT."NOM_CLT" AS CLIENT_NOM_CLT,
+     CLIENT."PRENOM_CLT" AS CLIENT_PRENOM_CLT,
+     CLIENT."ADRESSE" AS CLIENT_ADRESSE,
+     CLIENT."TEL" AS CLIENT_TEL,
+     CLIENT."PERMIS" AS CLIENT_PERMIS,
+     VOITURE."MATRICULE" AS VOITURE_MATRICULE,
+     VOITURE."MODEL" AS VOITURE_MODEL,
+     VOITURE."MARQUE" AS VOITURE_MARQUE,
+     VOITURE."COULEUR" AS VOITURE_COULEUR,
+     VOITURE."CARBURANT" AS VOITURE_CARBURANT,
+     VOITURE."ETAT" AS VOITURE_ETAT,
+     VOITURE."PRIX" AS VOITURE_PRIX
+FROM
+     "LOCATION"."CLIENT" CLIENT INNER JOIN "LOCATION"."CONTRAT" CONTRAT ON CLIENT."CIN_CLT" = CONTRAT."CIN_CLT"
+     INNER JOIN "LOCATION"."VOITURE" VOITURE ON CONTRAT."MATRICULE" = VOITURE."MATRICULE"
+where CONTRAT.id_contrat = $P{p_idc}]]>
+	</queryString>
+	<field name="CONTRAT_ID_CONTRAT" class="java.math.BigDecimal"/>
+	<field name="CONTRAT_DATE_D" class="java.sql.Timestamp"/>
+	<field name="CONTRAT_DATE_R" class="java.sql.Timestamp"/>
+	<field name="CONTRAT_MONTANT" class="java.math.BigDecimal"/>
+	<field name="CONTRAT_MATRICULE" class="java.lang.String"/>
+	<field name="CONTRAT_CIN_CLT" class="java.lang.String"/>
+	<field name="CLIENT_CIN_CLT" class="java.lang.String"/>
+	<field name="CLIENT_NOM_CLT" class="java.lang.String"/>
+	<field name="CLIENT_PRENOM_CLT" class="java.lang.String"/>
+	<field name="CLIENT_ADRESSE" class="java.lang.String"/>
+	<field name="CLIENT_TEL" class="java.lang.String"/>
+	<field name="CLIENT_PERMIS" class="java.lang.String"/>
+	<field name="VOITURE_MATRICULE" class="java.lang.String"/>
+	<field name="VOITURE_MODEL" class="java.math.BigDecimal"/>
+	<field name="VOITURE_MARQUE" class="java.lang.String"/>
+	<field name="VOITURE_COULEUR" class="java.lang.String"/>
+	<field name="VOITURE_CARBURANT" class="java.lang.String"/>
+	<field name="VOITURE_ETAT" class="java.lang.String"/>
+	<field name="VOITURE_PRIX" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="114" splitType="Stretch">
+			<image>
+				<reportElement uuid="a9335430-e6bf-4111-8d55-d3e6d0655b92" x="0" y="0" width="132" height="114"/>
+				<imageExpression><![CDATA["C:\\Users\\user\\Desktop\\853993434.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement uuid="d3d3ef61-0ee7-45bd-9b81-7f0ba94ccf78" mode="Opaque" x="109" y="0" width="446" height="114" forecolor="#006666" backcolor="#999999"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="18" isBold="false" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Essaid's Cars Rental]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="179" splitType="Stretch">
+			<frame>
+				<reportElement uuid="a0749cf6-500f-4e9a-bc1e-e8c42e48e775" mode="Opaque" x="0" y="0" width="555" height="179" backcolor="#999999"/>
+			</frame>
+			<textField>
+				<reportElement uuid="728a986c-8ee8-4476-a1c5-52cce73cfc51" x="82" y="15" width="152" height="20"/>
+				<textElement>
+					<font fontName="Verdana"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CONTRAT_ID_CONTRAT}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="ac75e226-69e0-4273-a7ff-a834225313fb" x="0" y="15" width="82" height="20"/>
+				<textElement textAlignment="Right">
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID Contrat : ]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="06c25080-1b17-4bbc-bf46-d5e5ac547485" x="82" y="35" width="152" height="20"/>
+				<textElement>
+					<font fontName="Verdana"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CONTRAT_CIN_CLT}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="85fabd55-5d0b-4888-9c09-155c34e850a0" x="16" y="35" width="66" height="20"/>
+				<textElement textAlignment="Right">
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CIN Client : ]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="e39cb823-b6ef-4091-8de8-73f2a6f2e4ba" x="82" y="55" width="152" height="20"/>
+				<textElement>
+					<font fontName="Verdana"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CLIENT_NOM_CLT}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="b3ef551f-a9c7-411a-9323-74503b7c7db8" x="28" y="55" width="54" height="20"/>
+				<textElement textAlignment="Right">
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nom : ]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="f192c8ca-8ef8-4467-989b-5ea689bd4d35" x="82" y="75" width="152" height="20"/>
+				<textElement>
+					<font fontName="Verdana"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CLIENT_PRENOM_CLT}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="672af067-a54a-46e3-801f-ef1341930e11" x="28" y="75" width="54" height="20"/>
+				<textElement textAlignment="Right">
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Prenom : ]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="f8dc117a-a69e-4493-b6c7-8b5fd6218b97" x="82" y="95" width="152" height="20"/>
+				<textElement>
+					<font fontName="Verdana"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CLIENT_ADRESSE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="1f2e972d-8749-40d5-b0ed-e8a63d5dcb90" x="28" y="95" width="54" height="20"/>
+				<textElement textAlignment="Right">
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Adresse :]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="2e10a99b-493f-49e3-81e3-4c1297fef43c" x="82" y="115" width="152" height="20"/>
+				<textElement>
+					<font fontName="Verdana"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CLIENT_TEL}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="4a1bb585-d093-49a1-941b-4af6690b0661" x="16" y="115" width="66" height="20"/>
+				<textElement textAlignment="Right">
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Telephone : ]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="521b4cdb-4702-44bd-942d-b5e9f0f42a7c" x="373" y="15" width="149" height="20"/>
+				<textElement>
+					<font fontName="Verdana"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CONTRAT_MATRICULE}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="ed426cbd-6112-4cee-8ca4-c57ae45e5b11" x="271" y="15" width="1" height="120"/>
+			</line>
+			<staticText>
+				<reportElement uuid="2fea2291-6648-4ea9-ac16-04f59c9a1ddc" x="309" y="15" width="64" height="20"/>
+				<textElement textAlignment="Right">
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Matricule : ]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="c24ab29e-a0a1-42eb-a6e1-421a64a5955d" x="373" y="35" width="149" height="20"/>
+				<textElement>
+					<font fontName="Verdana"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{VOITURE_MARQUE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="cc027b21-7cb9-4789-85f2-d4d271ca48df" x="321" y="35" width="52" height="20"/>
+				<textElement textAlignment="Right">
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Marque : ]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="9c3b1610-e8d0-4547-8550-f5eb846e28fb" x="373" y="55" width="149" height="20"/>
+				<textElement>
+					<font fontName="Verdana"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{VOITURE_MODEL}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="2bbb8008-b75b-4175-b885-95fc14f12074" x="321" y="55" width="52" height="20"/>
+				<textElement textAlignment="Right">
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Model : ]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="95b6b3d2-f806-4440-87bc-26d3c38c1a4b" x="373" y="75" width="149" height="20"/>
+				<textElement>
+					<font fontName="Verdana"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{VOITURE_COULEUR}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="a93690c0-155f-47e4-9f5b-05832338a7c3" x="321" y="75" width="52" height="20"/>
+				<textElement textAlignment="Right">
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Couleur : ]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="46319c7d-e516-46ff-aa62-2c581b96907c" x="373" y="95" width="149" height="20"/>
+				<textElement>
+					<font fontName="Verdana"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{VOITURE_CARBURANT}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="ede11083-b4e0-4ff4-b42b-9defc7e1afb8" x="309" y="95" width="64" height="20"/>
+				<textElement textAlignment="Right">
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Carburant : ]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="a5f5b1fd-a6d9-432a-aca6-e146c27abe50" x="373" y="115" width="149" height="20"/>
+				<textElement>
+					<font fontName="Verdana"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CONTRAT_MONTANT}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="34b8f5b7-ab45-46bf-ab91-5aa442dbf781" x="309" y="115" width="64" height="20"/>
+				<textElement textAlignment="Right">
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Montant : ]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="16" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="2f7fe981-3cbe-49b1-b45c-1ad7dcb10d6d" x="0" y="0" width="82" height="15"/>
+				<textElement textAlignment="Center">
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID Contrat]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="7d0e4316-7ef3-44c1-9d85-ecb7e58d8ab1" x="82" y="0" width="96" height="15"/>
+				<textElement textAlignment="Center">
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CIN Client]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="4db6aa2c-adf0-40cf-85cc-1cf17584741f" x="178" y="0" width="111" height="15"/>
+				<textElement textAlignment="Center">
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Matricule]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="250c1a0d-4e0a-4319-bf28-f815397e8310" x="289" y="0" width="108" height="15"/>
+				<textElement textAlignment="Center">
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Date Depart]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="0a1af194-7597-4018-9a77-78267d1fa037" x="397" y="0" width="94" height="15"/>
+				<textElement textAlignment="Center">
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Date Retour]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="1b9d1e38-f034-4864-8639-8ae480c59c8c" x="491" y="0" width="64" height="15"/>
+				<textElement textAlignment="Center">
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Montant]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement uuid="8e400875-712f-48f0-816d-f655c485e268" x="0" y="0" width="82" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Verdana"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CONTRAT_ID_CONTRAT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="d479018d-6861-4b3a-84a6-3a5df8c09d81" x="82" y="0" width="96" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{CONTRAT_CIN_CLT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="401b1df6-e495-48ab-b99b-f4d48c3ad9a7" x="178" y="0" width="111" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{CONTRAT_MATRICULE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="fa4739d1-f3d5-4f0e-8b5d-a57546bb0de0" x="289" y="0" width="108" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{CONTRAT_DATE_D}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="22a5152d-c3a1-4555-af25-a25c650cb294" x="397" y="0" width="94" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{CONTRAT_DATE_R}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="23fdeb9c-ffc1-4ace-9ab6-ec70d901ab5c" x="491" y="0" width="64" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{CONTRAT_MONTANT}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<line>
+				<reportElement uuid="8b03775b-fbf0-4f3e-ba84-f82174e4bf89" x="28" y="0" width="494" height="2"/>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

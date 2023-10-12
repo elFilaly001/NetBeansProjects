@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <servlet>
+        <servlet-name>mise_jour</servlet-name>
+        <servlet-class>P.mise_jour</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>combobox</servlet-name>
+        <servlet-class>P.combobox</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>lienajax</servlet-name>
+        <servlet-class>P.lienajax</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>mise_jour</servlet-name>
+        <url-pattern>/mise_jour</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>combobox</servlet-name>
+        <url-pattern>/combobox</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>lienajax</servlet-name>
+        <url-pattern>/lienajax</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+</web-app>

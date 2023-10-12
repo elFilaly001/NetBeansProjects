@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 3, 2022 3:08:54 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hebernat.Client" table="CLIENT" schema="GSCOM" optimistic-lock="version">
+        <id name="codeclt" type="long">
+            <column name="CODECLT" precision="10" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <property name="nom" type="string">
+            <column name="NOM" length="20" />
+        </property>
+        <property name="catc" type="java.lang.Long">
+            <column name="CATC" precision="10" scale="0" />
+        </property>
+        <property name="vilc" type="string">
+            <column name="VILC" length="20" />
+        </property>
+        <set name="commandes" table="COMMANDE" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="CODECLT" precision="10" scale="0" />
+            </key>
+            <one-to-many class="hebernat.Commande" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <servlet>
+        <servlet-name>mise</servlet-name>
+        <servlet-class>P.mise</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>look</servlet-name>
+        <servlet-class>P.look</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>loging</servlet-name>
+        <servlet-class>P.loging</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>mise</servlet-name>
+        <url-pattern>/mise</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>look</servlet-name>
+        <url-pattern>/look</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>loging</servlet-name>
+        <url-pattern>/loging</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+</web-app>
